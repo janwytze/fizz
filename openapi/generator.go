@@ -25,7 +25,7 @@ const (
 
 var (
 	paramsInPathRe = regexp.MustCompile(`\{(.*?)\}`)
-	ginPathParamRe = regexp.MustCompile(`\/:([^\/]*)`)
+	ginPathParamRe = regexp.MustCompile(`\/[:*]([^\/]*)`)
 )
 
 // mediaTags maps media types to well-known
@@ -1247,7 +1247,7 @@ func fieldNameFromTag(sf reflect.StructField, tagName string) string {
 	return name
 }
 
-/// parseExampleValue is used to transform the string representation of the example value to the correct type.
+// parseExampleValue is used to transform the string representation of the example value to the correct type.
 func parseExampleValue(t reflect.Type, value string) (interface{}, error) {
 	// If the type implements Exampler use the ParseExample method to create the example
 	i, ok := reflect.New(t).Interface().(Exampler)
